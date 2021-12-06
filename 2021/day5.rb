@@ -1,5 +1,3 @@
-require 'set'
-
 def maybe_inc(h, x, y)
   key = "#{x},#{y}"
   (h[key] += 1) == 2 ? 1 : 0
