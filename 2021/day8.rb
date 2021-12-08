@@ -48,10 +48,12 @@ def decode(codes)
       map[9] = code
       set << code
     end
-  end
-  codes.each do |code|
     if code.size == 6 && code != map[9] && (map[7].chars - code.chars).size == 0 &&
       map[0] = code
+      set << code
+    end
+    if code.size == 5 && (map[1].chars - code.chars).size == 0
+      map[3] = code
       set << code
     end
     if code.size == 6 && code != map[9] && (map[7].chars - code.chars).size == 1 &&
@@ -62,12 +64,6 @@ def decode(codes)
   codes.each do |code|
     if code.size == 5 && (map[9].chars & code.chars).size == 4
       map[2] = code
-      set << code
-    end
-  end
-  codes.each do |code|
-    if code.size == 5 && (map[1].chars - code.chars).size == 0
-      map[3] = code
       set << code
     end
   end
@@ -95,3 +91,5 @@ def second
 
   res
 end
+
+p second
