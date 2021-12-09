@@ -91,5 +91,3 @@ def second
 
   res
 end
-
-p second
