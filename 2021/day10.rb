@@ -78,5 +78,3 @@ def second
   mid = scores.size / 2
   scores.sort[mid]
 end
-
-p second
