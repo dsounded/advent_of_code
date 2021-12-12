@@ -40,29 +40,30 @@ def first
   @res
 end
 
-def dfs2(p, g, visited, visited_small = nil)
+def dfs2(p, g, visited = Set.new, visited_small = nil)
   if p == 'end'
     @res += 1
     return
   end
 
-  if small?(p) && visited_small && (visited_small != p && visited[p] == 1)
-    return
-  end
-  if small?(p) && visited_small && (visited_small == p && visited[p] == 2)
+  if small?(p) && visited_small && visited.include?(p)
     return
   end
 
-  if small?(p) && (visited[p] += 1) == 2
+  if small?(p) && !visited_small && visited.include?(p)
     visited_small = p
   end
+
+  visited << p if small?(p)
 
   g[p].each do |opt|
     next if opt == 'start'
     dfs2(opt, g, visited, visited_small)
   end
 
-  visited[p] -= 1
+  if p != visited_small
+    visited.delete(p)
+  end
 end
 
 def second
@@ -78,6 +79,6 @@ def second
   end
 
   @res = 0
-  dfs2('start', g, Hash.new(0))
+  dfs2('start', g)
   @res
 end
