@@ -116,4 +116,3 @@ def second
 
   step
 end
-
