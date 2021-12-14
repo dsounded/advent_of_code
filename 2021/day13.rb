@@ -122,5 +122,3 @@ def second
     p line.join
   end
 end
-
-second
